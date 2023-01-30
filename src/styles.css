@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+.imgbg {
+    object-fit: cover;
+    height: 100vh;
+    z-index: -10;
+    position: fixed;
+}
+
+.imglogo {
+    width: 4.5rem;
+}
