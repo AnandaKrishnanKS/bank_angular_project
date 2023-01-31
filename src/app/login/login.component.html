@@ -1,4 +1,5 @@
 <section>
+    <h5 class="p-5">{{data}}</h5>
     <div class="container bg-secondary bg-opacity-75 w-75  text-center  mt-5 p-5 rounded-4">
 
         <h4>Singin to your Bank Account</h4>
@@ -6,18 +7,18 @@
         <form action="" class="w-75 ms-auto me-auto">
 
             <div>
-                <input (change)="acnoChange($event)" id="acid" name="acnum1" class="form-control mt-5 mb-4 " type="text"
+                <input #acno id="acid" name="acnum1" class="form-control mt-5 mb-4 " type="text"
                     [placeholder]="inptplcholdr">
             </div>
             <div>
-                <input (change)="pswChange($event)" id="psw1" name="paswrd1" class="form-control mb-5" type="text"
+                <input #pswd id="psw1" name="paswrd1" class="form-control mb-5" type="password"
                     placeholder="Enter Password">
             </div>
             <div>
-                <button (click)="login()" type="button" class="btn btn-outline-light">login</button>
+                <button (click)="login(acno,pswd)" type="button" class="btn btn-outline-light">login</button>
             </div>
 
         </form>
-        <h5 class="pt-5">{{data}}</h5>
+
     </div>
 </section>

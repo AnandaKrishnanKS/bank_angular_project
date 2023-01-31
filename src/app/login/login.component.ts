@@ -25,23 +25,53 @@ export class LoginComponent {
 
   constructor() { }
 
-  login() {
-    alert('login clicked')
+  // login() {
+  //   var acno = this.acno
+  //   var pswd = this.pswd
+  //   var userDetails = this.userDetails
+  //   if (acno in userDetails) {
+  //     if (pswd == userDetails[acno]["password"]) {
+  //       alert('login success')
+  //     } else {
+  //       alert('incorrect password')
+  //     }
+  //   } else {
+  //     alert('account number incorrect or not registerd')
+  //   }
+
+  //   // alert('login clicked')
+  // }
+
+  login(a: any, b: any) {
+    // var acno = this.acno
+    // var pswd = this.pswd
+    var acno = a.value
+    var pswd = b.value
+
+    var userDetails = this.userDetails
+    if (acno in userDetails) {
+      if (pswd == userDetails[acno]["password"]) {
+        alert('login success')
+      } else {
+        alert('incorrect password')
+      }
+    } else {
+      alert('account number incorrect or not registerd')
+    }
+
+
   }
 
-  acnoChange(event: any) {
-    this.acno = event.target.value
-    // initialised in line 13
-    console.log(this.acno);
+  // acnoChange(event: any) {
+  //   this.acno = event.target.value
+  //   // initialised in line 13
+  //   console.log(this.acno);
+  // }
 
-  }
-
-  pswChange(event: any) {
-    // initialised in line 16
-    this.pswd = event.target.value
-    console.log(this.pswd);
-
-
-  }
+  // pswChange(event: any) {
+  //   // initialised in line 16
+  //   this.pswd = event.target.value
+  //   console.log(this.pswd);
+  // }
 
 }
