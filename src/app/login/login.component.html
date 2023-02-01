@@ -7,18 +7,23 @@
         <form action="" class="w-75 ms-auto me-auto">
 
             <div>
-                <input #acno id="acid" name="acnum1" class="form-control mt-5 mb-4 " type="text"
+                <input [(ngModel)]="acno" id="acid" name="acnum1" class="form-control mt-5 mb-4 " type="text"
                     [placeholder]="inptplcholdr">
             </div>
             <div>
-                <input #pswd id="psw1" name="paswrd1" class="form-control mb-5" type="password"
+                <input [(ngModel)]="pswd" id="psw1" name="paswrd1" class="form-control mb-5" type="password"
                     placeholder="Enter Password">
             </div>
             <div>
-                <button (click)="login(acno,pswd)" type="button" class="btn btn-outline-light">login</button>
+                <button (click)="login()" type="button" class="btn btn-outline-light">login</button>
+            </div>
+            <div class="pt-3">
+                <strong class="text-white">not registered?<a class="text-info" routerLink="register"> click
+                        here</a></strong>
             </div>
 
         </form>
+
 
     </div>
 </section>
