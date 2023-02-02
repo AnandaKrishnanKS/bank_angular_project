@@ -3,20 +3,23 @@
 
         <h4>Singup to your Bank Account</h4>
 
-        <form action="" class="w-75 ms-auto me-auto">
+        <form action="" (ngSubmit)="register()" class="w-75 ms-auto me-auto">
+
 
             <div>
-                <input id="acid" name="acnum1" class="form-control mt-5 mb-4 " type="text"
+                <input [(ngModel)]="uname" id="unamid" name="usern1" class="form-control mt-5  mb-4" type="text"
+                    placeholder="Enter User name">
+            </div>
+            <div>
+                <input [(ngModel)]="acno" id="acid" name="acnum1" class="form-control mb-4 " type="text"
                     placeholder="Enter Account number">
             </div>
             <div>
-                <input id="unamid" name="usern1" class="form-control mb-4" type="text" placeholder="Enter User name">
+                <input [(ngModel)]="pswd" id="psw1" name="paswrd1" class="form-control mb-5" type="password"
+                    placeholder="Enter Password">
             </div>
             <div>
-                <input id="psw1" name="paswrd1" class="form-control mb-5" type="password" placeholder="Enter Password">
-            </div>
-            <div>
-                <button type="button" (click)="register()" class="btn btn-outline-light">singup</button>
+                <button type="submit" class="btn btn-outline-light">singup</button>
             </div>
 
         </form>

@@ -17,21 +17,17 @@ export class LoginComponent {
   pswd = ''
 
 
-  constructor(public router: Router, public ds: DataService) { }
+  constructor(private router: Router, private ds: DataService) { }
 
   login() {
     var acno = this.acno
     var pswd = this.pswd
-    var userDetails = this.ds.userDetails
-    if (acno in userDetails) {
-      if (pswd == userDetails[acno]["password"]) {
-        alert('login success')
-        this.router.navigateByUrl('dashboard')
-      } else {
-        alert('incorrect password')
-      }
+    const result = this.ds.login(acno, pswd)
+    if (result) {
+      alert('login success')
+      this.router.navigateByUrl('dashboard')
     } else {
-      alert('account number incorrect or not registerd')
+      alert('incurect acount number or password')
     }
   }
 
