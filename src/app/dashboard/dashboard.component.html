@@ -1,1 +1,63 @@
-<h1 class="heading1">Welcome {{user}}</h1>
+<header>
+
+    <h1 class="heading1">Welcome {{user}}</h1>
+
+</header>
+<main>
+
+    <section>
+        <div class="container-fluid">
+            <div class="row w-75 ms-auto me-auto">
+                <div
+                    class="col-lg-5 col-md-5 col-12 mt-4 text-center ms-auto me-auto bg-secondary bg-opacity-50 rounded-4">
+                    <div>
+                        <h3 class="p-4">Deposite</h3>
+                    </div>
+                    <form (ngSubmit)="deposite()">
+                        <div>
+                            <input [(ngModel)]="acno" id="acid1" name="acnum1" type="text"
+                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="account number">
+                        </div>
+                        <div>
+                            <input [(ngModel)]="psw" id="psw1" name="paswrd1" type="password"
+                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="password">
+                        </div>
+                        <div>
+                            <input [(ngModel)]="amnt" id="amouid1" name="amnt1" type="number"
+                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="amount">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-outline-success m-4 text-white">credit</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div
+                    class="col-lg-5 col-md-5 col-12 mt-4 text-center ms-auto me-auto bg-secondary bg-opacity-50 rounded-4">
+
+                    <div>
+                        <h3 class="p-4">Withdraw</h3>
+                    </div>
+                    <form (ngSubmit)="withdraw()">
+                        <div>
+                            <input [(ngModel)]="acno1" id="acid2" name="acnum2" type="text"
+                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="account number">
+                        </div>
+                        <div>
+                            <input [(ngModel)]="psw1" id="psw2" name="paswrd2" type="password"
+                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="password">
+                        </div>
+                        <div>
+                            <input [(ngModel)]="amnt1" id="amouid2" name="amnt2" type="number"
+                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="amount">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-outline-info m-4 text-white">debit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>

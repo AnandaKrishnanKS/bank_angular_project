@@ -48,4 +48,49 @@ export class DataService {
     }
 
   }
+
+  deposite(acnum: any, password: any, amount: any) {
+    let userDetails = this.userDetails
+    //to convert string into number
+    var amnt = parseInt(amount)
+    if (acnum in userDetails) {
+      if (password == userDetails[acnum]["password"]) {
+        //update balace
+        userDetails[acnum]["balance"] += amnt
+        //return balance
+        return userDetails[acnum]["balance"]
+
+      } else {
+        return false
+      }
+    } else {
+      return false
+    }
+  }
+  withdraw(acnum: any, password: any, amount: any) {
+    let userDetails = this.userDetails
+    //to convert string into number
+    var amnt = parseInt(amount)
+    if (acnum in userDetails) {
+      if (password == userDetails[acnum]["password"]) {
+
+        if (amnt < userDetails[acnum]["balance"]) {
+          //update balace
+          userDetails[acnum]["balance"] -= amnt
+          //return balance
+          return userDetails[acnum]["balance"]
+        } else {
+          alert(`insufficient balance`)
+          return false
+        }
+
+      } else {
+        alert(`password incorect`)
+        return false
+      }
+    } else {
+      alert(`username incorrect`)
+      return false
+    }
+  }
 }
