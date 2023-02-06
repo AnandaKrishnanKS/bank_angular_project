@@ -12,10 +12,10 @@ export class DataService {
   constructor() { }
 
   userDetails: any = {
-    1000: { acno: 1000, username: "anu", password: "abc123", balance: 0 },
-    1001: { acno: 1001, username: "amal", password: "abc123", balance: 0 },
-    1003: { acno: 1003, username: "arun", password: "abc123", balance: 0 },
-    1004: { acno: 1004, username: "akhil", password: "abc123", balance: 0 }
+    1000: { acno: 1000, username: "anu", password: "abc123", balance: 0, transaction: [] },
+    1001: { acno: 1001, username: "amal", password: "abc123", balance: 0, transaction: [] },
+    1003: { acno: 1003, username: "arun", password: "abc123", balance: 0, transaction: [] },
+    1004: { acno: 1004, username: "akhil", password: "abc123", balance: 0, transaction: [] }
 
   }
 
@@ -25,18 +25,20 @@ export class DataService {
       return false
 
     } else {
-      this.userDetails[acno] = { acno, username: uname, password: psw, balance: 0 }
+      this.userDetails[acno] = { acno, username: uname, password: psw, balance: 0, transaction: [] }
       console.log(this.userDetails);
       return true
     }
   }
-
+  currentAcno: any
   login(acno: any, psw: any) {
     var userDetails = this.userDetails
     if (acno in userDetails) {
       if (psw == userDetails[acno]["password"]) {
 
         this.currentUser = userDetails[acno]['username']
+
+        this.currentAcno = acno
 
         return true
 
@@ -57,8 +59,13 @@ export class DataService {
       if (password == userDetails[acnum]["password"]) {
         //update balace
         userDetails[acnum]["balance"] += amnt
+
+        //transaction data storage
+        userDetails[acnum]["transaction"].push({ Type: "Credit", amount: amnt })
+
         //return balance
         return userDetails[acnum]["balance"]
+
 
       } else {
         return false
@@ -74,9 +81,15 @@ export class DataService {
     if (acnum in userDetails) {
       if (password == userDetails[acnum]["password"]) {
 
-        if (amnt < userDetails[acnum]["balance"]) {
+        if (amnt <= userDetails[acnum]["balance"]) {
           //update balace
           userDetails[acnum]["balance"] -= amnt
+
+          //transaction data storage
+          userDetails[acnum]["transaction"].push({ Type: "Debit", amount: amnt })
+          // console.log(userDetails);
+
+
           //return balance
           return userDetails[acnum]["balance"]
         } else {
@@ -92,5 +105,12 @@ export class DataService {
       alert(`username incorrect`)
       return false
     }
+  }
+  getTransaction(acno: any) {
+
+    // console.log(acno);
+
+    return this.userDetails[acno]["transaction"]
+
   }
 }
