@@ -4,14 +4,14 @@
 
         <h4>Singin to your Bank Account</h4>
 
-        <form action="" (ngSubmit)="login()" class="w-75 ms-auto me-auto">
+        <form action="" [formGroup]="loginForm" (ngSubmit)="login()" class="w-75 ms-auto me-auto">
 
             <div>
-                <input [(ngModel)]="acno" id="acid" name="acnum1" class="form-control mt-5 mb-4 " type="text"
+                <input formControlName="acno" id="acid" name="acnum1" class="form-control mt-5 mb-4 " type="text"
                     [placeholder]="inptplcholdr">
             </div>
             <div>
-                <input [(ngModel)]="pswd" id="psw1" name="paswrd1" class="form-control mb-5" type="password"
+                <input formControlName="psw" id="psw1" name="paswrd1" class="form-control mb-5" type="password"
                     placeholder="Enter Password">
             </div>
             <div>
