@@ -21,17 +21,17 @@
                     <div>
                         <h3 class="p-4">Deposite</h3>
                     </div>
-                    <form (ngSubmit)="deposite()">
+                    <form [formGroup]="depsitFrom" (ngSubmit)="deposite()">
                         <div>
-                            <input [(ngModel)]="acno" id="acid1" name="acnum1" type="text"
+                            <input formControlName="acno" id="acid1" name="acnum1" type="text"
                                 class="form-control m-2 w-75 ms-auto me-auto" placeholder="account number">
                         </div>
                         <div>
-                            <input [(ngModel)]="psw" id="psw1" name="paswrd1" type="password"
+                            <input formControlName="psw" id="psw1" name="paswrd1" type="password"
                                 class="form-control m-2 w-75 ms-auto me-auto" placeholder="password">
                         </div>
                         <div>
-                            <input [(ngModel)]="amnt" id="amouid1" name="amnt1" type="number"
+                            <input formControlName="amnt" id="amouid1" name="amnt1" type="number"
                                 class="form-control m-2 w-75 ms-auto me-auto" placeholder="amount">
                         </div>
                         <div>
@@ -46,17 +46,17 @@
                     <div>
                         <h3 class="p-4">Withdraw</h3>
                     </div>
-                    <form (ngSubmit)="withdraw()">
+                    <form [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
                         <div>
-                            <input [(ngModel)]="acno1" id="acid2" name="acnum2" type="text"
+                            <input formControlName="acno1" id="acid2" name="acnum2" type="text"
                                 class="form-control m-2 w-75 ms-auto me-auto" placeholder="account number">
                         </div>
                         <div>
-                            <input [(ngModel)]="psw1" id="psw2" name="paswrd2" type="password"
+                            <input formControlName="psw1" id="psw2" name="paswrd2" type="password"
                                 class="form-control m-2 w-75 ms-auto me-auto" placeholder="password">
                         </div>
                         <div>
-                            <input [(ngModel)]="amnt1" id="amouid2" name="amnt2" type="number"
+                            <input formControlName="amnt1" id="amouid2" name="amnt2" type="number"
                                 class="form-control m-2 w-75 ms-auto me-auto" placeholder="amount">
                         </div>
                         <div>

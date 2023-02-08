@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -10,43 +11,60 @@ export class DashboardComponent {
 
   user: any
 
-  acno: any
-  psw: any
-  amnt: any
-
-  acno1: any
-  psw1: any
-  amnt1: any
-
-  constructor(private ds: DataService) {
+  constructor(private ds: DataService, private fb: FormBuilder) {
 
     this.user = this.ds.currentUser
-
   }
 
+  depsitFrom = this.fb.group({
+    acno: ['', [Validators.required, Validators.pattern('[0-9]+')]],
+    psw: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]+')]],
+    amnt: ['', [Validators.required, Validators.pattern('[0-9]+')]]
+  })
+
+  withdrawForm = this.fb.group({
+    acno1: ['', [Validators.required, Validators.pattern('[0-9]+')]],
+    psw1: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]+')]],
+    amnt1: ['', [Validators.required, Validators.pattern('[0-9]+')]]
+  })
+
   deposite() {
-    var acno = this.acno
-    var psw = this.psw
-    var amnt = this.amnt
-    const result = this.ds.deposite(acno, psw, amnt)
-    if (result) {
-      alert(`your account has been credited with amount Rs:${amnt}. 
-     And your current balance is Rs:${result}`)
+    var acno = this.depsitFrom.value.acno
+    var psw = this.depsitFrom.value.psw
+    var amnt = this.depsitFrom.value.amnt
+
+    if (this.depsitFrom.valid) {
+      const result = this.ds.deposite(acno, psw, amnt)
+      if (result) {
+        alert(`your account has been credited with amount Rs:${amnt}. 
+       And your current balance is Rs:${result}`)
+      } else {
+        alert('account number or password incorect')
+      }
+
+
     } else {
-      alert('account number or password incorect')
+      alert('invalid form')
     }
+
 
 
   }
   withdraw() {
-    var acno = this.acno1
-    var psw = this.psw1
-    var amnt = this.amnt1
-    const result = this.ds.withdraw(acno, psw, amnt)
-    if (result) {
-      alert(`your account has been debited with amount Rs:${amnt}. 
-     And your current balance is Rs:${result}`)
+    var acno = this.withdrawForm.value.acno1
+    var psw = this.withdrawForm.value.psw1
+    var amnt = this.withdrawForm.value.amnt1
+
+    if (this.withdrawForm.valid) {
+      const result = this.ds.withdraw(acno, psw, amnt)
+      if (result) {
+        alert(`your account has been debited with amount Rs:${amnt}. 
+       And your current balance is Rs:${result}`)
+      }
+    } else {
+      alert('invalid form')
     }
+
 
   }
 
