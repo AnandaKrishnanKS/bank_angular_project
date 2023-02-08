@@ -24,15 +24,33 @@
                     <form [formGroup]="depsitFrom" (ngSubmit)="deposite()">
                         <div>
                             <input formControlName="acno" id="acid1" name="acnum1" type="text"
-                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="account number">
+                                class="form-control m-2 mb-0 w-75 ms-auto me-auto" placeholder="account number">
+                        </div>
+                        <div *ngIf="this.depsitFrom.get('acno')?.touched && this.depsitFrom.get('acno')?.errors">
+                            <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">*
+                                this field is
+                                required
+                            </p>
                         </div>
                         <div>
                             <input formControlName="psw" id="psw1" name="paswrd1" type="password"
-                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="password">
+                                class="form-control m-2 mb-0 w-75 ms-auto me-auto" placeholder="password">
+                        </div>
+                        <div *ngIf="this.depsitFrom.get('psw')?.touched && this.depsitFrom.get('psw')?.errors">
+                            <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">*
+                                this field is
+                                required
+                            </p>
                         </div>
                         <div>
-                            <input formControlName="amnt" id="amouid1" name="amnt1" type="number"
-                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="amount">
+                            <input formControlName="amnt" id="amouid1" name="amnt1" type="text"
+                                class="form-control m-2 mb-0 w-75 ms-auto me-auto" placeholder="amount">
+                        </div>
+                        <div *ngIf="this.depsitFrom.get('amnt')?.touched && this.depsitFrom.get('amnt')?.errors">
+                            <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">*
+                                this field is
+                                required
+                            </p>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-outline-success m-4 text-white">credit</button>
@@ -49,15 +67,33 @@
                     <form [formGroup]="withdrawForm" (ngSubmit)="withdraw()">
                         <div>
                             <input formControlName="acno1" id="acid2" name="acnum2" type="text"
-                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="account number">
+                                class="form-control m-2 mb-0 w-75 ms-auto me-auto" placeholder="account number">
+                        </div>
+                        <div *ngIf="this.withdrawForm.get('acno1')?.touched && this.withdrawForm.get('acno1')?.errors">
+                            <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">*
+                                this field is
+                                required
+                            </p>
                         </div>
                         <div>
                             <input formControlName="psw1" id="psw2" name="paswrd2" type="password"
-                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="password">
+                                class="form-control m-2 mb-0 w-75 ms-auto me-auto" placeholder="password">
+                        </div>
+                        <div *ngIf="this.withdrawForm.get('psw1')?.touched && this.withdrawForm.get('psw1')?.errors">
+                            <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">*
+                                this field is
+                                required
+                            </p>
                         </div>
                         <div>
-                            <input formControlName="amnt1" id="amouid2" name="amnt2" type="number"
-                                class="form-control m-2 w-75 ms-auto me-auto" placeholder="amount">
+                            <input formControlName="amnt1" id="amouid2" name="amnt2" type="text"
+                                class="form-control m-2 mb-0 w-75 ms-auto me-auto" placeholder="amount">
+                        </div>
+                        <div *ngIf="this.withdrawForm.get('amnt1')?.touched && this.withdrawForm.get('amnt1')?.errors">
+                            <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">*
+                                this field is
+                                required
+                            </p>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-outline-info m-4 text-white">debit</button>

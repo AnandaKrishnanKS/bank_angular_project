@@ -7,19 +7,34 @@
 
 
             <div>
-                <input formControlName="uname" id="unamid" name="usern1" class="form-control mt-5  mb-4" type="text"
+                <input formControlName="uname" id="unamid" name="usern1" class="form-control mt-5 " type="text"
                     placeholder="Enter User name">
             </div>
+            <div *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+                <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">
+                    enter user name (a-z
+                    values only)</p>
+            </div>
             <div>
-                <input formControlName="acno" id="acid" name="acnum1" class="form-control mb-4 " type="text"
+                <input formControlName="acno" id="acid" name="acnum1" class="form-control mt-4 " type="text"
                     placeholder="Enter Account number">
             </div>
-            <div>
-                <input formControlName="psw" id="psw1" name="paswrd1" class="form-control mb-5" type="password"
-                    placeholder="Enter Password">
+            <div *ngIf="this.registerForm.get('acno')?.errors && this.registerForm.get('acno')?.touched">
+                <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">
+                    enter ac no: (0-9
+                    values only)</p>
             </div>
             <div>
-                <button type="submit" class="btn btn-outline-light">singup</button>
+                <input formControlName="psw" id="psw1" name="paswrd1" class="form-control  mt-4" type="password"
+                    placeholder="Enter Password">
+            </div>
+            <div *ngIf="this.registerForm.get('psw')?.errors && this.registerForm.get('psw')?.touched">
+                <p class="col-lg-6 col-12 text-white bg-danger  me-auto ms-auto rounded-bottom-4 p-1 ">
+                    enter password(a-z or 0-9
+                    values)</p>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-outline-light mt-5">singup</button>
             </div>
 
         </form>
