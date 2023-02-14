@@ -137,7 +137,7 @@ this.userDetails=JSON.parse(localStorage.getItem('database') || '')
         return false
       }
     } else {
-      alert(`username incorrect`)
+      alert(`account number incorrect`)
       return false
     }
   }
