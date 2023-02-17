@@ -12,10 +12,13 @@ export class DashboardComponent {
 
   user: any
   acno:any
+  datedetails:any
 
   constructor(private ds: DataService, private fb: FormBuilder, private router: Router) {
 
     this.user = this.ds.currentUser
+    //access date 
+    this.datedetails=new Date()
   }
 
   depsitFrom = this.fb.group({
@@ -88,6 +91,8 @@ this.router.navigateByUrl("")
   deleteParent() {
     this.acno=JSON.parse(localStorage.getItem("currentAcno")||"")
 
-    // this.router.navigateByUrl("")
+  }
+  cancel(){
+    this.acno=''
   }
 }
