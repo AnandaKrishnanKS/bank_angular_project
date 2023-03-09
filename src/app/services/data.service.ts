@@ -1,4 +1,5 @@
 import { registerLocaleData } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { elementAt } from 'rxjs';
 
@@ -11,7 +12,7 @@ export class DataService {
   currentAcno: any
   userDetails: any
 
-  constructor() { 
+  constructor(private http:HttpClient) { 
     this.getData()
   }
 
@@ -48,23 +49,17 @@ this.userDetails=JSON.parse(localStorage.getItem('database') || '')
 
 
   register(uname: any, acno: any, psw: any) {
-    if (acno in this.userDetails) {
-      return false
+   //create body data
+    const data={uname,acno,psw}
+   return this.http.post('http://localhost:3000/register',data)
+    
 
-    } else {
-      this.userDetails[acno] = { acno, username: uname, password: psw, balance: 0, transaction: [] }
-      console.log(this.userDetails);
-
-      this.saveData()
-
-      return true
-    }
   }
 
   login(acno: any, psw: any) {
     var userDetails = this.userDetails
     if (acno in userDetails) {
-      if (psw == userDetails[acno]["password"]) {
+      if (psw == userDetails[acno]["password"]) { 
 
         this.currentUser = userDetails[acno]['username']
 

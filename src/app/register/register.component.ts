@@ -29,14 +29,20 @@ export class RegisterComponent {
 
     if (this.registerForm.valid) {
 
-      const result = this.ds.register(uname, acno, pswd)
-      if (result) {
-        alert('registered')
-        this.router.navigateByUrl('')
-      } else {
+      this.ds.register(uname, acno, pswd).subscribe((result:any)=>{
 
-        alert('user alredy exists')
+        alert(result.message)
+        this.router.navigateByUrl('')
+
+      },
+      result=>{
+
+        alert(result.error.message)
+        this.router.navigateByUrl('')
+
       }
+      )
+      
     } else {
       alert('invalid form')
     }
