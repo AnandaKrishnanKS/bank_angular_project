@@ -26,13 +26,22 @@ export class LoginComponent {
     var pswd = this.loginForm.value.psw
 
     if (this.loginForm.valid) {
-      const result = this.ds.login(acno, pswd)
-      if (result) {
-        alert('login success')
+      this.ds.login(acno, pswd).subscribe((result:any)=>{
+        
+        localStorage.setItem("currentUser",JSON.stringify(result.currentUser))
+        localStorage.setItem("currentAcno",JSON.stringify(result.currentAcno))
+        localStorage.setItem("token",JSON.stringify(result.token))
+
+        alert(result.message)
         this.router.navigateByUrl('dashboard')
-      } else {
-        alert('incurect acount number or password')
-      }
+
+      },
+      result=>{
+
+        alert(result.error.message)
+       
+      })
+      
 
     } else {
       alert('invalid form')

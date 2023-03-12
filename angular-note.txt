@@ -154,6 +154,10 @@ ts - observable  - resolve   subscribe()
                  - reject    catch()
 
 
+Header generation for api request 
+-----------------------------------
+HttpHeaders  - class used to generate Header
+
 
 
 

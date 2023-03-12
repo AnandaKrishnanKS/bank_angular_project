@@ -11,14 +11,14 @@ import { DataService } from '../services/data.service';
 export class DashboardComponent {
 
   user: any
-  acno:any
-  datedetails:any
+  acno: any
+  datedetails: any
 
   constructor(private ds: DataService, private fb: FormBuilder, private router: Router) {
 
-    this.user = this.ds.currentUser
+    this.user = JSON.parse(localStorage.getItem("currentUser") || "")
     //access date 
-    this.datedetails=new Date()
+    this.datedetails = new Date()
   }
 
   depsitFrom = this.fb.group({
@@ -33,13 +33,13 @@ export class DashboardComponent {
     amnt1: ['', [Validators.required, Validators.pattern('[0-9]+')]]
   })
 
-ngOnInit():void{
-  if(!localStorage.getItem("currentAcno")){
-    alert('please login')
-this.router.navigateByUrl("")
-  }
+  ngOnInit(): void {
+    //   if(!localStorage.getItem("currentAcno")){
+    //     alert('please login')
+    // this.router.navigateByUrl("")
+    //   }
 
-}
+  }
 
   deposite() {
     var acno = this.depsitFrom.value.acno
@@ -47,14 +47,15 @@ this.router.navigateByUrl("")
     var amnt = this.depsitFrom.value.amnt
 
     if (this.depsitFrom.valid) {
-      const result = this.ds.deposite(acno, psw, amnt)
-      if (result) {
-        alert(`your account has been credited with amount Rs:${amnt}. 
-       And your current balance is Rs:${result}`)
-      } else {
-        alert('account number or password incorect')
-      }
+      this.ds.deposite(acno, psw, amnt).subscribe((result: any) => {
 
+        alert(result.message)
+
+      },
+        result => {
+          alert(result.error.message)
+        }
+      )
 
     } else {
       alert('invalid form')
@@ -69,11 +70,15 @@ this.router.navigateByUrl("")
     var amnt = this.withdrawForm.value.amnt1
 
     if (this.withdrawForm.valid) {
-      const result = this.ds.withdraw(acno, psw, amnt)
-      if (result) {
-        alert(`your account has been debited with amount Rs:${amnt}. 
-       And your current balance is Rs:${result}`)
-      }
+      this.ds.withdraw(acno, psw, amnt).subscribe((result:any)=>{
+
+        alert(result.message)
+        
+      },
+      result=>{
+        alert(result.error.message)
+      })
+      
     } else {
       alert('invalid form')
     }
@@ -89,10 +94,10 @@ this.router.navigateByUrl("")
   }
 
   deleteParent() {
-    this.acno=JSON.parse(localStorage.getItem("currentAcno")||"")
+    this.acno = JSON.parse(localStorage.getItem("currentAcno") || "")
 
   }
-  cancel(){
-    this.acno=''
+  cancel() {
+    this.acno = ''
   }
 }

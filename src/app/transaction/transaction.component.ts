@@ -12,8 +12,12 @@ export class TransactionComponent {
   transactionData: any
 
   constructor(private ds: DataService,private router: Router) {
-    this.transactionData = this.ds.getTransaction(this.ds.currentAcno)
-    // console.log(this.transactionData);
+    
+    this.ds.getTransaction(JSON.parse(localStorage.getItem("currentAcno")||"")).subscribe((result:any)=>{
+
+      this.transactionData=result.transaction
+
+    })
 
   }
 }
