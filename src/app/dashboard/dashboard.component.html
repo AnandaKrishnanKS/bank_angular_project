@@ -10,7 +10,7 @@
 </header>
 
 
-<app-deleteconfirm (oncancel)="cancel()" [item]="acno"></app-deleteconfirm>
+<app-deleteconfirm (onDelete)="Delete($event)" (oncancel)="cancel()" [item]="acno"></app-deleteconfirm>
  
 <main  [ngClass]="acno?'style':'' ">
 

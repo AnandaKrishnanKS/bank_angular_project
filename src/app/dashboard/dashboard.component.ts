@@ -16,7 +16,10 @@ export class DashboardComponent {
 
   constructor(private ds: DataService, private fb: FormBuilder, private router: Router) {
 
-    this.user = JSON.parse(localStorage.getItem("currentUser") || "")
+    if (localStorage.getItem("currentUser")) {
+      this.user = JSON.parse(localStorage.getItem("currentUser") || "")
+    }
+
     //access date 
     this.datedetails = new Date()
   }
@@ -34,10 +37,10 @@ export class DashboardComponent {
   })
 
   ngOnInit(): void {
-    //   if(!localStorage.getItem("currentAcno")){
-    //     alert('please login')
-    // this.router.navigateByUrl("")
-    //   }
+    if (!localStorage.getItem("token")) {
+      alert('please login')
+      this.router.navigateByUrl("")
+    }
 
   }
 
@@ -70,15 +73,15 @@ export class DashboardComponent {
     var amnt = this.withdrawForm.value.amnt1
 
     if (this.withdrawForm.valid) {
-      this.ds.withdraw(acno, psw, amnt).subscribe((result:any)=>{
+      this.ds.withdraw(acno, psw, amnt).subscribe((result: any) => {
 
         alert(result.message)
-        
+
       },
-      result=>{
-        alert(result.error.message)
-      })
-      
+        result => {
+          alert(result.error.message)
+        })
+
     } else {
       alert('invalid form')
     }
@@ -90,6 +93,7 @@ export class DashboardComponent {
 
     localStorage.removeItem("currentUser")
     localStorage.removeItem("currentAcno")
+    localStorage.removeItem("token")
     this.router.navigateByUrl("")
   }
 
@@ -99,5 +103,12 @@ export class DashboardComponent {
   }
   cancel() {
     this.acno = ''
+  }
+  Delete(event: any) {
+    // alert(event)
+    this.ds.deleacc(event).subscribe((result: any) => {
+      alert(result.message)
+      this.logout()
+    })
   }
 }
